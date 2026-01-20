@@ -1,0 +1,1 @@
+Ky projekt është një modul i personalizuar i ndërtuar në platformën Odoo 17 duke përdorur Python dhe PyCharm. Moduli është projektuar për të digjitalizuar operacionet ditore të një restoranti, duke përfshirë menaxhimin e porosive, tavolinave dhe nivelet e aksesit për stafin.
