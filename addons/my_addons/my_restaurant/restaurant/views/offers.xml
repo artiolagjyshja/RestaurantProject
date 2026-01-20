@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="restaurant_offers_view_form" model="ir.ui.view">
+        <field name="name">restaurant.offers.view.form</field>
+        <field name="model">restaurant.offers</field>
+        <field name="arch" type="xml">
+            <form string="Offers">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Psh. Happy Hour..."/></h1>
+                    </div>
+                    <group>
+                        <group string="Konfigurimi">
+                            <field name="offer_type" widget="radio" options="{'horizontal': true}"/>
+                            <field name="discount_percent"/>
+                        </group>
+                        <group string="Periudha / Orari">
+                            <field name="start_time" invisible="offer_type == 'permanent'" required="offer_type == 'seasonal'"/>
+                            <field name="end_time" invisible="offer_type == 'permanent'" required="offer_type == 'seasonal'"/>
+                            <field name="start_hour" widget="float_time" invisible="offer_type == 'seasonal'"/>
+                            <field name="end_hour" widget="float_time" invisible="offer_type == 'seasonal'"/>
+                        </group>
+                    </group>
+                    <group string="Produktet">
+                        <field name="product_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="restaurant_offers_view_tree" model="ir.ui.view">
+        <field name="name">restaurant.offers.view.tree</field>
+        <field name="model">restaurant.offers</field>
+        <field name="arch" type="xml">
+            <tree string="Offers">
+                <field name="name"/>
+                <field name="offer_type" widget="badge" decoration-info="offer_type == 'permanent'" decoration-success="offer_type == 'seasonal'"/>
+                <field name="start_time" invisible="offer_type == 'permanent'"/>
+                <field name="start_hour" widget="float_time" invisible="offer_type == 'seasonal'"/>
+                <field name="discount_percent"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="restaurant_offers_action" model="ir.actions.act_window">
+        <field name="name">Oferta Restauranti</field>
+        <field name="res_model">restaurant.offers</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

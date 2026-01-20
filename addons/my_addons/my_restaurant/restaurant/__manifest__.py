@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+{
+    'name': 'Restorant Brryli',
+    'version': '1.0',
+    'summary': 'Brief description of the module',
+    'description': '''
+        Detailed description of the module
+    ''',
+    'category': 'restaurant',
+    'author': 'Cybrosys Techno Solutions',
+    'company': 'Cybrosys Techno Solutions',
+    'maintainer': 'Cybrosys Techno Solutions',
+    'website': 'https://www.cybrosys.com',
+    'depends': ['base'],
+    'data': [
+        'security/groups.xml',
+        'security/ir.model.access.csv',
+        'wizard/sales_report_wizard_view.xml',
+        'report/sales_report_view.xml',
+        'views/reporting_menu.xml',
+        'views/employee.xml',
+		'views/product.xml',
+		'views/alarm_table.xml',
+		'views/invoice.xml',
+		'views/table.xml',
+		'views/offers.xml',
+		'views/order.xml',
+		'views/category.xml',
+        'views/menu.xml',
+],
+    'license': 'LGPL-3',
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

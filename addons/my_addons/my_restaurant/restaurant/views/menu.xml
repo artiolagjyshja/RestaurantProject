@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu -->
+    <menuitem id="restaurant_menu_root"
+              name="Restaurant"
+              sequence="10"/>
+
+    <menuitem id="employee_menu"
+              name="Employee"
+              action="employee_action"
+              parent="restaurant_menu_root"
+              sequence="20"/>
+
+    <menuitem id="restaurant_product_menu"
+              name="Product"
+              action="restaurant_product_action"
+              parent="restaurant_menu_root"
+              sequence="30"/>
+
+    <menuitem id="restaurant_category_menu"
+              name="Category"
+              action="restaurant_category_action"
+              parent="restaurant_menu_root"
+              sequence="40"/>
+
+    <menuitem id="restaurant_alarm_table_menu"
+              name="Alarm Table"
+              action="restaurant_alarm_table_action"
+              parent="restaurant_menu_root"
+              sequence="80"/>
+
+    <menuitem id="restaurant_invoice_menu"
+              name="Invoice"
+              action="restaurant_invoice_action"
+              parent="restaurant_menu_root"
+              sequence="100"/>
+
+    <menuitem id="restaurant_table_menu"
+              name="Table"
+              action="restaurant_table_action"
+              parent="restaurant_menu_root"
+              sequence="50"/>
+
+    <menuitem id="restaurant_order_menu"
+              name="Order"
+              action="restaurant_order_action"
+              parent="restaurant_menu_root"
+              sequence="60"/>
+
+    <menuitem id="restaurant_offers_menu"
+              name="Offers"
+              action="restaurant_offers_action"
+              parent="restaurant_menu_root"
+              sequence="90"/>
+</odoo>

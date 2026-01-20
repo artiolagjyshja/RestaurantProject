@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="restaurant_category_view_form" model="ir.ui.view">
+        <field name="name">restaurant.category.view.form</field>
+        <field name="model">restaurant.category</field>
+        <field name="arch" type="xml">
+            <form string="Category">
+                <sheet>
+                    <group>
+                        <field name="category_name"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- List View -->
+    <record id="restaurant_category_view_tree" model="ir.ui.view">
+        <field name="name">restaurant.category.view.list</field>
+        <field name="model">restaurant.category</field>
+        <field name="arch" type="xml">
+            <tree string="Category">
+                <field name="category_name"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <!--search-->
+     <record id="restaurant_category_search_view" model="ir.ui.view">
+        <field name="name">restaurant.category.view.search</field>
+        <field name="model">restaurant.category</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="category_name"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="restaurant_category_action" model="ir.actions.act_window">
+        <field name="name">Category</field>
+        <field name="res_model">restaurant.category</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first category!
+            </p>
+        </field>
+    </record>
+</odoo>

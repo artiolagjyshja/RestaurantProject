@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_sales_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="text-center">
+                        <h2>Sales Report</h2>
+                        <p>
+                            From: <span t-esc="data['start_date']"/> 
+                            To: <span t-esc="data['end_date']"/>
+                        </p>
+                        <p>Employee: <span t-esc="data['employee_name']"/></p>
+                    </div>
+
+                    <br/>
+                    
+                    <!-- Summary Cards -->
+                    <div class="row mt-4 mb-4">
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Sales</h5>
+                                    <p class="card-text"><span t-esc="total_sales" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Profit</h5>
+                                    <p class="card-text"><span t-esc="total_profit" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Transactions</h5>
+                                    <p class="card-text"><span t-esc="len(docs)"/></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Best Seller & Least Seller -->
+                    <div class="row mb-4">
+                        <div class="col-6" t-if="best_seller">
+                            <div class="alert alert-success">
+                                <strong>Best Seller:</strong> <span t-esc="best_seller['name']"/> (<span t-esc="best_seller['qty']"/> units)
+                            </div>
+                        </div>
+                        <div class="col-6" t-if="least_seller">
+                            <div class="alert alert-warning">
+                                <strong>Least Seller:</strong> <span t-esc="least_seller['name']"/> (<span t-esc="least_seller['qty']"/> units)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Table -->
+                    <table class="table table-sm table-striped">
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Date</th>
+                                <th>Product</th>
+                                <th>Employee</th>
+                                <th class="text-end">Qty</th>
+                                <th class="text-end">Price</th>
+                                <th class="text-end">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="docs" t-as="line">
+                                <td><span t-field="line.order_id.name"/></td>
+                                <td><span t-field="line.order_id.date_time" t-options='{"widget": "date"}'/></td>
+                                <td><span t-field="line.product_id.product"/></td>
+                                <td><span t-field="line.order_id.employee_id.employee_name"/></td>
+                                <td class="text-end"><span t-field="line.quantity"/></td>
+                                <td class="text-end"><span t-field="line.price"/></td>
+                                <td class="text-end"><span t-field="line.subtotal" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-end"><strong>Total:</strong></td>
+                                <td class="text-end">
+                                    <strong t-esc="total_sales" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_sales" model="ir.actions.report">
+        <field name="name">Sales &amp; Profit Report</field>
+        <field name="model">restaurant.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">restaurant.report_sales_template</field>
+        <field name="report_file">restaurant.report_sales_template</field>
+        <field name="binding_model_id" ref="model_restaurant_report_wizard"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

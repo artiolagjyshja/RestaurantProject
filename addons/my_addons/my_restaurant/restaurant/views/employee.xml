@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--Form View -->
+        <record id="restaurant_employee_form_view" model="ir.ui.view">
+            <field name="name">restaurant.employee.view.form</field>
+            <field name="model">restaurant.employee</field>
+            <field name="arch" type="xml">
+                <form string="Restaurant_employee">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="employee_name"/>
+                                <field name="role"/>
+                                <field name="phone"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                                <field name="user_id"/>
+                            </group>
+                            <group>
+                                <field name="address"/>
+                                <field name="salary" column_invisible="True"/>
+                                <field name="hiring_date"/>
+                                <field name="is_active"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Taken order">
+                                <field name="order_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="table_id"/>
+                                        <field name="state"/>
+                                        <field name="invoice_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!--List view -->
+        <record id="restaurant_employee_view_list" model="ir.ui.view">
+        <field name="name">restaurant.employee.view.list</field>
+        <field name="model">restaurant.employee</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_name"/>
+                <field name="role"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="hiring_date"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+<!--search view-->
+       <record id="restaurant_employee_view_search" model="ir.ui.view">
+        <field name="name">restaurant.employee.view.search</field>
+        <field name="model">restaurant.employee</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_name"/>
+                <field name="role"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="hiring_date"/>
+                <field name="is_active"/>
+            </search>
+        </field>
+    </record>
+
+<!--Action -->
+        <record id="employee_action" model="ir.actions.act_window">
+            <field name="name">Employee</field>
+            <field name="res_model">restaurant.employee</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_smiling_face">
+                    My first bar restaurant employee!
+                </p>
+            </field>
+        </record>
+
+    </data>
+
+
+</odoo>
+

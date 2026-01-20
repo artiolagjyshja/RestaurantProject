@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--list VIEW-->
+    <record id="restaurant_product_tree_view" model="ir.ui.view">
+        <field name="name">restaurant.product.view.tree</field>
+        <field name="model">restaurant.product</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product"/>
+                <field name="purchase_price"/>
+                <field name="sale_price"/>
+                <field name="product_type"/>
+                <field name="category_ids"/>
+                <field name="quantity_available"/>
+                <field name="is_available"/>
+                <field name="minimum_stock_level"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--FORM VIEW-->
+    <record id="restaurant_product_form_view" model="ir.ui.view">
+        <field name="name">restaurant.product.view.form</field>
+        <field name="model">restaurant.product</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product"/>
+                            <field name="quantity_available"/>
+                            <field name="purchase_price"/>
+                            <field name="sale_price"/>
+                        </group>
+                        <group>
+                            <field name="product_type"/>
+                            <field name="is_available"/>
+                            <field name="minimum_stock_level"/>
+                            <field name="is_composite"/>
+                        </group>
+                    </group>
+                    <group string="Analiza e Çmimit Combo" invisible="not is_composite">
+                        <group>
+                            <field name="total_components_price" widget="monetary" string="Vlera pa ulje"/>
+                        </group>
+                        <group>
+                            <field name="discount_rate" widget="float" string="Ulja (%)"
+                                   decoration-danger="discount_rate > 0" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Përbërësit e Menusë" invisible="not is_composite">
+                            <field name="menu_ids">
+                                <tree editable="bottom">
+                                    <field name="component_id"/>
+                                    <field name="quantity"/>
+
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group string="Category">
+                        <field name="category_ids" widget="many2many_tags"/>
+                    </group>
+                    <group string="Offers">
+                        <field name="offers_ids" widget="many2many_tags"/>
+                    </group>
+                    <notebook>
+                        <page string="Order Line ">
+                            <field name="order_lines_ids">
+                                    <tree>
+                                        <field name="quantity"/>
+                                        <field name="price"/>
+                                        <field name="subtotal"/>
+                                    </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+
+      <!--search VIEW-->
+    <record id="restaurant_product_search_view" model="ir.ui.view">
+        <field name="name">restaurant.product.view.search</field>
+        <field name="model">restaurant.product</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product"/>
+                <field name="purchase_price"/>
+                <field name="sale_price"/>
+                <field name="product_type"/>
+                <field name="category_ids"/>
+                <field name="quantity_available"/>
+                <field name="is_available"/>
+                <field name="minimum_stock_level"/>
+                <field name="is_composite"/>
+            </search>
+        </field>
+    </record>
+
+    <!--ACTION-->
+    <record id="restaurant_product_action" model="ir.actions.act_window">
+        <field name="name">Product</field>
+        <field name="res_model">restaurant.product</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first product
+            </p>
+        </field>
+    </record>
+
+</odoo>
